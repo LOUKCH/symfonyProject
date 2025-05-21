@@ -1,0 +1,51 @@
+pipeline {
+    agent any
+
+    environment {
+        SONARQUBE = credentials('sonarqube-token') // ID from Jenkins credentials
+    }
+
+    stages {
+        stage('Cloner le repo') {
+            steps {
+                git branch: 'main', url: 'https://github.com/OtmaneGuilli/symfonyProject.git'
+            }
+        }
+
+        stage('Analyse SonarQube') {
+            steps {
+                dir('projet') {
+                    withSonarQubeEnv('SonarQube') {
+                        script {
+                            def scannerHome = tool 'SonarScanner' // Le nom donné dans Jenkins > Global Tool Configuration
+                            sh "${scannerHome}/bin/sonar-scanner"
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                dir('projet') {
+                    sh 'docker build -t otmane49/symfony-app .'
+                }
+            }
+        }
+
+        stage('Push DockerHub') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOCKER_USER')]) {
+                    sh 'docker login -u $DOCKER_USER -p $DOCKER_PASS'
+                    sh 'docker push otmane49/symfony-app'
+                }
+            }
+        }
+
+        stage('Déploiement Ansible') {
+            steps {
+                sh 'ansible-playbook -i ansible/inventory.ini ansible/deploy.yml'
+            }
+        }
+    }
+}

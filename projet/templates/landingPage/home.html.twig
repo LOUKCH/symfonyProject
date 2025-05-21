@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue sur InvoicePro{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 80px 0;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #4361ee, #7209b7, #f72585);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta {
+            background: linear-gradient(135deg, #4361ee 0%, #7209b7 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .btn-white {
+            background-color: white;
+            color: #4361ee;
+        }
+
+        .btn-white:hover {
+            background-color: #e0e0e0;
+            color: #4361ee;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 text-center text-lg-start">
+                <h1 class="mb-4">Simplifiez votre <span class="gradient-text">gestion de factures</span> et de clients</h1>
+                <p class="lead mb-4">Une solution moderne et intuitive pour gérer vos factures, suivre vos paiements et améliorer votre relation client.</p>
+                <div class="d-flex justify-content-center justify-content-lg-start gap-2">
+                    <a href="{{ path('app_register') }}" class="btn btn-primary">Démarrer gratuitement</a>
+                    <a href="#features" class="btn btn-outline-primary">Voir les fonctionnalités</a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center mt-4 mt-lg-0">
+                <img src="https://placehold.co/600x400" alt="Dashboard InvoicePro" class="img-fluid rounded shadow">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-5 bg-white" id="features">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2>Fonctionnalités puissantes</h2>
+            <p class="text-muted">Découvrez comment InvoicePro peut transformer votre gestion administrative</p>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="feature-card p-4 border rounded h-100 text-center">
+                    <h5>Facturation simplifiée</h5>
+                    <p>Créez et envoyez des factures professionnelles en quelques clics. Modèles personnalisables.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-card p-4 border rounded h-100 text-center">
+                    <h5>Gestion des clients</h5>
+                    <p>Centralisez toutes les informations de vos clients pour une meilleure relation commerciale.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-card p-4 border rounded h-100 text-center">
+                    <h5>Suivi des paiements</h5>
+                    <p>Suivez l'état des paiements et soyez alerté en cas de retard. Améliorez votre trésorerie.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="cta">
+    <div class="container">
+        <h2 class="mb-3">Prêt à gérer vos factures intelligemment ?</h2>
+        <p>Créez votre compte gratuitement et commencez en moins de 2 minutes.</p>
+        <a href="{{ path('app_register') }}" class="btn btn-white btn-lg">Démarrer maintenant</a>
+    </div>
+</section>
+
+{% endblock %}
