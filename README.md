@@ -32,7 +32,7 @@ npm run build
 Le projet est hébergé sur GitHub. Pour le cloner :
 
 
-git clone https://github.com/OtmaneGuilli/symfonyProject.git
+git clone https://github.com/LOUKCH/symfonyProject.git
 cd symfonyProject/projet
 2. Installation des dépendances PHP
 On utilise Composer pour installer toutes les bibliothèques Symfony et les bundles nécessaires :
